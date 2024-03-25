@@ -1,6 +1,7 @@
 import { getDemo, postDemo } from "../controllers/demoControllers";
+import { Router } from "express";
 
-const router = require("express").Router();
+const router = Router();
 
 router.get("/", getDemo);
 
