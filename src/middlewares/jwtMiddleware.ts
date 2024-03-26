@@ -16,7 +16,7 @@ const jwtMiddleware = async (
   }
 
   try {
-    const decoded: any = jwt.verify(token, secret);
+    const decoded = jwt.verify(token, secret) as { id: string };
 
     User.findById(decoded.id)
       .then((user) => {
