@@ -1,9 +1,18 @@
-const demo1 = {
-  name: "demo1",
-  age: 18,
-  address: "Hanoi",
+const fetchPlanets = async () => {
+  const res = await fetch("https://swapi.dev/api/planets/");
+  console.log(res);
+  const data = await res.json();
+  console.log(data);
+  return data;
 };
 
-const { name, age, address } = demo1;
-
-console.log(name, age, address);
+fetch("https://swapi.dev/api/planetfghs/")
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log("error", err);
+  });
