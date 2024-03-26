@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import Movie from "../models/moviesModel";
 import { MovieType, MoviesType } from "../types/movies.types";
 import { Error } from "mongoose";
+import Joi from "joi";
+import { movieSchema } from "../validations/movies.schemas";
 
 export const getMovieById = (req: Request, res: Response) => {
   //destructuration
@@ -54,7 +56,7 @@ export const putMovie = (req: Request, res: Response) => {
 
   Movie.findByIdAndUpdate(id, req.body)
     .then((movie: MovieType) => {
-      res.json(movie);
+      res.json("movie");
     })
     .catch((err: Error) => {
       res.status(404).json(err.message);
