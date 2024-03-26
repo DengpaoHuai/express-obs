@@ -53,12 +53,8 @@ export const putMovie = (req: Request, res: Response) => {
   const { id } = req.params;
 
   Movie.findByIdAndUpdate(id, req.body)
-    .then((movie: MovieType | null) => {
-      if (movie) {
-        res.json(movie);
-      } else {
-        res.status(404).json("Movie not found");
-      }
+    .then((movie: MovieType) => {
+      res.json(movie);
     })
     .catch((err: Error) => {
       res.status(404).json(err.message);
@@ -69,12 +65,8 @@ export const deleteMovie = (req: Request, res: Response) => {
   const { id } = req.params;
 
   Movie.findByIdAndDelete(id)
-    .then((movie: MovieType | null) => {
-      if (movie) {
-        res.json(movie);
-      } else {
-        res.status(404).json("Movie not found");
-      }
+    .then((movie: MovieType) => {
+      res.json(movie);
     })
     .catch((err: Error) => {
       res.status(404).json(err.message);
