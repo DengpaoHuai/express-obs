@@ -12,7 +12,7 @@ const port = 3000;
 
 export const secret = "secret";
 
-mongoose.connect("mongodb://localhost:27017/demo");
+//mongoose.connect("mongodb://localhost:27017/demo");
 
 app.use(bodyParser.json());
 app.use(
@@ -57,6 +57,7 @@ app.get("/", (req, res) => {
 app.post("/echo", (req, res) => {
   res.json(req.body);
 });
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

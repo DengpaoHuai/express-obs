@@ -15,7 +15,7 @@ const router = Router();
 
 router.get("/:id", getMovieById);
 
-router.get("/", jwtMiddleware, getMovies);
+router.get("/", getMovies);
 router.post(
   "/",
   jwtMiddleware,

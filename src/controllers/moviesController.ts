@@ -10,7 +10,7 @@ export const getMovieById = (req: Request, res: Response) => {
   const { id } = req.params;
   Movie.findById(id)
     .then((movie: MovieType) => {
-      res.json(movie);
+      res.status(201).json(movie);
     })
     .catch((err: Error) => {
       res.status(404).json(err.message);
