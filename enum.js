@@ -1,0 +1,24 @@
+var demo;
+(function (demo) {
+    demo["express"] = "express";
+    demo["bodyParser"] = "body-parser";
+    demo["demoRouter"] = "./src/routes/demo.routes";
+    demo["moviesRouter"] = "./src/routes/movies.routes";
+    demo["userRouter"] = "./src/routes/user.routes";
+    demo["mongoose"] = "mongoose";
+    demo["Worker"] = "worker_threads";
+    demo["app"] = "app";
+    demo[demo["port"] = 3000] = "port";
+    demo["secret"] = "secret";
+    demo["mongodb"] = "mongodb://localhost:27017/demo";
+    demo["blockRouter"] = "/block-router";
+    demo["startWorker"] = "/start-worker";
+    demo["worker"] = "./worker.js";
+    demo["message"] = "message";
+    demo["result"] = "result";
+    demo["start"] = "start";
+    demo["root"] = "/";
+    demo["echo"] = "/echo";
+    demo["hello"] = "Hello, world!";
+    demo["example"] = "Example app listening on port";
+})(demo || (demo = {}));
