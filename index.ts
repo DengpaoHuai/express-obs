@@ -5,6 +5,7 @@ import moviesRouter from "./src/routes/movies.routes";
 import userRouter from "./src/routes/user.routes";
 import mongoose from "mongoose";
 import { Worker } from "worker_threads";
+import session from "express-session";
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,13 @@ export const secret = "secret";
 mongoose.connect("mongodb://localhost:27017/demo");
 
 app.use(bodyParser.json());
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 app.use("/demo", demoRouter);
 app.use("/movies", moviesRouter);
@@ -23,6 +31,13 @@ app.use("/users", userRouter);
   for (let i = 0; i < 1000000000000000; i++) {}
   res.send("Blocked for a while");
 });*/
+
+app.set("view engine", "ejs");
+app.set("views", "./src/views");
+
+app.get("/demo-ejs", (req, res) => {
+  res.render("demo", { name: "John Doe" });
+});
 
 app.get("/start-worker", (req, res) => {
   const worker = new Worker("./worker.js");

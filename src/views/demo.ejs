@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>EJS Demo</title>
+  </head>
+
+  <body>
+    <h1>EJS Demo</h1>
+    <p>My name is <%= name %></p>
+
+    <ul>
+      <% for (let i = 0; i < 5; i++) { %>
+      <li><%= i %></li>
+      <% } %> <% if (name === 'John Doe') { %>
+      <li>Welcome back, John!</li>
+
+      <% } else { %>
+
+      <li>Who are you?</li>
+
+      <% } %>
+    </ul>
+  </body>
+</html>

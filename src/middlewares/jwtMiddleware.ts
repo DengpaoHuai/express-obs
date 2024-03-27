@@ -1,8 +1,14 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { secret } from "../..";
 import User from "../models/userModel";
+import { User as UserType } from "../types/users.types";
 
+declare module "express-session" {
+  interface SessionData {
+    user: UserType;
+  }
+}
 const jwtMiddleware = async (
   request: Request,
   response: Response,
@@ -16,10 +22,16 @@ const jwtMiddleware = async (
   }
 
   try {
-    const decoded = jwt.verify(token, secret) as { id: string };
+    const decoded1 = jwt.verify(token, secret);
+    if (typeof decoded1 === "string") {
+      response.status(401).json("Token not found");
+      return;
+    }
+    const decoded: JwtPayload = decoded1;
 
     User.findById(decoded.id)
       .then((user) => {
+        request.session.user = user as UserType;
         next();
       })
       .catch((err) => {
